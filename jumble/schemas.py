@@ -8,6 +8,14 @@ class DifficultyLevel(Enum):
     medium = "Wee bit of a challenge"
     hard = "Tough nut to crack"
 
+
+# Score sort section
+
+class ScoreSort(Enum):
+    score_asc = "Ascending"
+    score_dsc = "Descending"
+    rdn = "Random"
+
 # Master word section
 
 class MasterWordBase(BaseModel):

@@ -74,7 +74,7 @@ def create_jumble_option(
     ):
     """Function should create a new like in the database"""
     # add jumble option to db
-    new_jumble_option = models.Like(
+    new_jumble_option = models.JumbleOption(
         **jumble_option.dict(), master_word_id=master_word_id
         )
     db.add(new_jumble_option)
@@ -98,7 +98,7 @@ def read_master_word_jumble_options(db: Session, master_word_id: int):
 
 def read_single_master_word_jumble_option(
     db: Session, master_word_id: int, level: schemas.DifficultyLevel,
-    order: str = "score_asc"
+    order: str = schemas.ScoreSort
     ):
     """
     Get one random jumble option from a given master word and difficulty level
