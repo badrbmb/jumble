@@ -96,9 +96,9 @@ def read_master_word_jumble_options(db: Session, master_word_id: int):
     return master_word.jumble_options
 
 
-def read_single_master_word_jumble_option(
+def read_single_jumble_option(
     db: Session, master_word_id: int, level: schemas.DifficultyLevel,
-    order: str = schemas.ScoreSort
+    order: str = schemas.JumbleOptionScoreSort
     ):
     """
     Get one random jumble option from a given master word and difficulty level
@@ -113,9 +113,9 @@ def read_single_master_word_jumble_option(
     query = select(master_word.jumble_options).where(
         models.JumbleOption.level == level.name
         )
-    if order == 'score_asc':
+    if order == schemas.JumbleOptionScoreSort.score_asc:
         return query.order_by(models.JumbleOption.score).first()
-    if order == 'score_dsc':
+    if order == schemas.JumbleOptionScoreSort.score_dsc:
         return query.order_by(models.JumbleOption.score.desc()).first()
     else:
         # random order

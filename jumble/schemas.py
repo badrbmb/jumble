@@ -9,9 +9,9 @@ class DifficultyLevel(Enum):
     hard = "Tough nut to crack"
 
 
-# Score sort section
+# Jumble option score sort section
 
-class ScoreSort(Enum):
+class JumbleOptionScoreSort(Enum):
     score_asc = "Ascending"
     score_dsc = "Descending"
     rdn = "Random"
