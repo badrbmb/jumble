@@ -33,11 +33,11 @@ class JumbleBase(BaseModel):
     pass
 
 
-class JumbleCreate(MasterWordBase):
+class JumbleCreate(JumbleBase):
     pass
 
 
-class Jumble(MasterWordBase):
+class Jumble(JumbleBase):
     id: int
     master_word_id: int
 
@@ -54,11 +54,11 @@ class JumbleOptionBase(BaseModel):
     level: str
 
 
-class JumbleOptionCreate(MasterWordBase):
+class JumbleOptionCreate(JumbleOptionBase):
     jumble_id: int
 
 
-class JumbleOption(MasterWordBase):
+class JumbleOption(JumbleOptionBase):
     id: int
     master_word_id: int
 
