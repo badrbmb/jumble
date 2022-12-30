@@ -127,6 +127,8 @@ def get_hint_word_candidates(
     # assign difficulty bucket
     df['level'] = pd.qcut(df['score'], q=3,
                           labels=DIFFICULTY_LEVELS)
+    # assing placeholder
+    df['placeholder'] = hint
 
     # sample random world at chosen difficulty level
     return df

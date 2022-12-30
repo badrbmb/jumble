@@ -11,11 +11,22 @@ st.set_page_config(
 
 # define side bar
 with st.sidebar:
-    st.write('# Choose a difficulty level:')
+
+    with st.expander(label="How to play?"):
+        st.markdown(
+            """
+            The objective is to find the letters that are in the answer to the **given clue** at the bottom of the page
+            - Start by unscramble the letters on the left, one letter to each square, to form ordinary words
+            - Use the letters in shaded area to guess the missing part of the clue
+            - You can refer to the **image** and the **dialogue** to help guess the missing part of the clue
+
+            ❤️ ~Enjoy ❤️
+            """
+        )
 
     difficulty_level = st.radio(
-        label='Choose a difficulty level:',
-        options=list(schemas.DifficultyLevel),
+        label='Too hard, or too easy for ya?\n\nChange difficulty level below:',
+        options=[t.value for t in list(schemas.DifficultyLevel)],
         )
 
 # define the game to play
@@ -26,12 +37,12 @@ game = Game(
 
 
 # define main layout
-st.write('# Joanimble')
+st.markdown("![Joanimble](https://storage.googleapis.com/jumble-bucket/jumble-logo.png)")
+
 
 col1, col2, col3 = st.columns([3, 3, 1])
 
 with col1:
-    st.write("Unscramble these letters, one letter ot each square, to form ordinary words")
 
     st.write(game.jumbles)
 

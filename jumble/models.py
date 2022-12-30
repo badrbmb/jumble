@@ -24,9 +24,6 @@ class MasterWord(Base):
     jumbles = relationship(
         "Jumble", back_populates="master_word"
         )  # query "MasterWord.jumbles"
-    # jumble_options = relationship(
-    #     "JumbleOption", back_populates="master_word"
-    #     )  # query "MasterWord.jumble_options"
 
 
 class Jumble(Base):
@@ -68,11 +65,9 @@ class JumbleOption(Base):
     score= Column(Integer, nullable=False)
     defs= Column(String, nullable=True)
     level= Column(String, nullable=False)
+    placeholder= Column(String, nullable=False)
 
     # Relationships
-    # master_word = relationship(
-    #     "MasterWord", back_populates="jumble_options"
-    #     )  # query "JumbleOption.master_word"
     jumble = relationship(
         "Jumble", back_populates="jumble_options"
         )  # query "JumbleOption.jumble"

@@ -60,6 +60,7 @@ class JumbleOptionBase(BaseModel):
     score: int
     defs: str
     level: str
+    placeholder: str
 
 
 class JumbleOptionCreate(JumbleOptionBase):
