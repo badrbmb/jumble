@@ -1,8 +1,8 @@
 """generate tables
 
-Revision ID: 0b9e0508d506
-Revises:
-Create Date: 2022-12-30 16:28:08.815185
+Revision ID: 7abe104912c1
+Revises: 
+Create Date: 2022-12-30 20:18:30.045198
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0b9e0508d506'
+revision = '7abe104912c1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,6 +40,7 @@ def upgrade() -> None:
     sa.Column('score', sa.Integer(), nullable=False),
     sa.Column('defs', sa.String(), nullable=True),
     sa.Column('level', sa.String(), nullable=False),
+    sa.Column('placeholder', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['jumble_id'], ['jumbles.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

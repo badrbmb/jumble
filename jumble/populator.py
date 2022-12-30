@@ -14,7 +14,7 @@ Character 2: "They were so old, I can't even imagine how long they've been aroun
 
 def create_jumble_options(row_h: pd.Series):
     """Create jumble options from pd.Series"""
-    new_jumble_option = dict(row_h[['word', 'score', 'defs', 'level']])
+    new_jumble_option = dict(row_h[['word', 'score', 'defs', 'level', 'placeholder']])
     # make sure no comma seperate valeus exist in defs
     return models.JumbleOption(**new_jumble_option)
 
