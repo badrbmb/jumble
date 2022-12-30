@@ -1,42 +1,60 @@
+from typing import List
+from dataclasses import dataclass
+from jumble import schemas, crud
+from jumble.database import SessionLocal
+import random
 
 """
 Contains class definitions to play the game
 """
 
-import random
-import string
-import requests
-
+@dataclass
 class Game:
     """Create a game instance"""
+    to_exclude: List[int]
+    difficulty_level: schemas.DifficultyLevel
+
+    def __post_init__(self):
+        """generate random master word and excecute queries"""
+        with SessionLocal() as db:
+            self.master_word = crud.read_rnd_master_word(db=db, exclude_ids=[])
+
+            # get associated jumbles and options
+            self.jumble_solution = {
+                i.id: crud.read_single_jumble_option(
+                    jumble_id=i.id, db=db, level=self.difficulty_level,
+                    order=schemas.JumbleOptionScoreSort.rdn
+                    )
+                for i in self.master_word.jumbles
+                }
 
 
-    def __init__(self) -> list:
-        """Attribute a random grid to size 9"""
-        self.grid = [random.choice(string.ascii_uppercase) for _ in range(9)]
+    @property
+    def solution(self) -> str:
+        return self.master_word.solution
 
-    def is_valid(self, word: str) -> bool:
-        """Check if a given world is valid"""
+    @property
+    def jumbles(self) -> dict:
+        out = {}
+        for jumble_id, jumble_solution in self.jumble_solution.items():
+            # shuffle jumble options
+            shuffled = list(jumble_solution.word)
+            random.shuffle(shuffled)
+            out[jumble_id] = {
+                'solution': jumble_solution.word,
+                'shuffled': shuffled,
+                'hint': jumble_solution.defs
+            }
+        return out
 
-        # check it's a string
-        if not isinstance(word, str):
-            return False
+    @property
+    def image_url(self) -> str:
+        return self.master_word.image_url
 
-        # check not empty string
-        if len(word.strip()) == 0:
-            return False
+    @property
+    def dialogue(self) -> str:
+        return self.master_word.dialogue
 
-        # check if the given world is a subset of the desired solution
-        letters = self.grid.copy() # Consume letters from the grid
-        for letter in word:
-            if letter in letters:
-                letters.remove(letter)
-            else:
-                return False
-
-        # check if the given world is real word
-        response = requests.get(f"{Game.URL}/{word}")
-        # make sure status code is 200
-        response.raise_for_status()
-        # get reponse
-        return response.json()['found']
+    @property
+    def to_complete(self) -> str:
+        return self.master_word.to_complete
