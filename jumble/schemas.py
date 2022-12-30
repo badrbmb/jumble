@@ -63,12 +63,13 @@ class JumbleOptionBase(BaseModel):
 
 
 class JumbleOptionCreate(JumbleOptionBase):
-    jumble_id: int
+    pass
 
 
 class JumbleOption(JumbleOptionBase):
     id: int
-    master_word_id: int
+    jumble_id: int
+    # master_word_id: int
 
     class Config:
         orm_mode = True

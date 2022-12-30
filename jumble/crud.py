@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func, select
 
+from typing import List
 from jumble import models, schemas
 
 
@@ -18,24 +19,44 @@ def read_master_words(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.MasterWord).offset(skip).limit(limit).all()
 
 
-def read_user_by_solution(db: Session, solution: str):
+def read_master_word_by_solution(db: Session, solution: str):
     """Function should query the db for the master word with a matching solution"""
     return db.query(models.MasterWord).filter(
         models.MasterWord.solution == solution
         ).first()
 
 
-def create_master_word(db: Session, master_word: schemas.MasterWordCreate):
-    """Function should create a new naster word in the database"""
-    # add user to db
-    new_master_word = models.MasterWord(**master_word.dict())
+def read_master_words_by_solutions(db: Session, solutions: List[str]):
+    """Function should query the db for the master word with a matching solutions"""
+    return db.query(models.MasterWord).filter(
+        models.MasterWord.solution in solutions
+        ).all()
+
+
+def create_master_word_orm(db: Session, new_master_word: models.MasterWord):
+    """Function to create a new naster word with ORM in the database"""
+    # add master word to db
     db.add(new_master_word)
     db.commit()
     db.refresh(new_master_word)
     return new_master_word
 
 
+def create_master_word(db: Session, master_word: schemas.MasterWordCreate):
+    """Function to create a new naster word in the database"""
+    # add master word to db
+    new_master_word = models.MasterWord(**master_word.dict())
+    return create_master_word_orm(db=db, new_master_word=new_master_word)
+
+
 ####### Jumbles section #######
+
+
+def read_jumble(db: Session, jumble_id: int):
+    """Function should query the db for the jumble matching id"""
+    return db.query(models.Jumble).filter(
+        models.Jumble.id == jumble_id
+        ).first()
 
 
 def read_jumbles(db: Session, skip: int = 0, limit: int = 100):
@@ -70,12 +91,12 @@ def read_master_word_jumbles(db: Session, master_word_id: int):
 
 
 def create_jumble_option(
-    db: Session, jumble_option: schemas.JumbleOptionCreate, master_word_id: int
+    db: Session, jumble_option: schemas.JumbleOptionCreate, jumble_id: int
     ):
-    """Function should create a new like in the database"""
+    """Function should create a new jumble option in the database"""
     # add jumble option to db
     new_jumble_option = models.JumbleOption(
-        **jumble_option.dict(), master_word_id=master_word_id
+        **jumble_option.dict(), jumble_id=jumble_id
         )
     db.add(new_jumble_option)
     db.commit()
@@ -83,34 +104,35 @@ def create_jumble_option(
     return new_jumble_option
 
 
-def read_master_word_jumble_options(db: Session, master_word_id: int):
+def read_jumble_options(db: Session, jumble_id: int):
     """
     Get the jumble options from a given master word"""
     # query the master word
-    master_word = read_master_word(db, master_word_id=master_word_id)
+    jumble = read_jumble(db, jumble_id=jumble_id)
 
     # make use of SQL Alchemy's sugar syntax
-    if master_word is None:
+    if jumble is None:
         return None
 
-    return master_word.jumble_options
+    return jumble.jumble_options
 
 
 def read_single_jumble_option(
-    db: Session, master_word_id: int, level: schemas.DifficultyLevel,
+    db: Session, jumble_id: int,
+    level: schemas.DifficultyLevel,
     order: str = schemas.JumbleOptionScoreSort
     ):
     """
-    Get one random jumble option from a given master word and difficulty level
+    Get one random jumble option from a jumble id and difficulty level
     """
     # query the master word
-    master_word = read_master_word(db, master_word_id=master_word_id)
+    jumble = read_jumble(db, jumble_id=jumble_id)
 
     # make use of SQL Alchemy's sugar syntax
-    if master_word is None:
+    if jumble is None:
         return None
 
-    query = select(master_word.jumble_options).where(
+    query = select(jumble.jumble_options).where(
         models.JumbleOption.level == level.name
         )
     if order == schemas.JumbleOptionScoreSort.score_asc:
