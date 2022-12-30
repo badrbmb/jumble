@@ -43,6 +43,7 @@ class Game:
             out[jumble_id] = {
                 'solution': jumble_solution.word,
                 'shuffled': shuffled,
+                'placeholder': jumble_solution.placeholder,
                 'hint': jumble_solution.defs
             }
         return out
