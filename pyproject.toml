@@ -21,6 +21,7 @@ sqlalchemy = "^1.4.45"
 alembic = "^1.9.1"
 psycopg2-binary = "^2.9.5"
 sqlalchemy-utils = "^0.39.0"
+streamlit-nested-layout = "^0.1.1"
 streamlit = "^1.16.0"
 
 

@@ -2323,6 +2323,20 @@ watchdog = {version = "*", markers = "platform_system != \"Darwin\""}
 snowflake = ["snowflake-snowpark-python"]
 
 [[package]]
+name = "streamlit-nested-layout"
+version = "0.1.1"
+description = "Enables nested layout in streamlit."
+category = "main"
+optional = false
+python-versions = ">=3.7, !=3.9.7"
+files = [
+    {file = "streamlit-nested-layout-0.1.1.tar.gz", hash = "sha256:8b7ce4d90b76ff8f4fff2cf7b30ae262cd2c068722e5439a3618f9a412ed82fb"},
+]
+
+[package.dependencies]
+streamlit = ">=1.10.0"
+
+[[package]]
 name = "tenacity"
 version = "8.1.0"
 description = "Retry code until it succeeds"
@@ -2668,4 +2682,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.9.7 || >3.9.7,<4.0"
-content-hash = "60bcc2a569180486e1b645b73aab5e6845f51f1c0e838685ca931e19a10f2f3d"
+content-hash = "a812388b42b0de90e87aad4ab4e3bf5ed026622c30cd7c9ce82052551c1520ba"

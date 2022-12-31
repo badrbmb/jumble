@@ -17,7 +17,7 @@ def read_master_word(db: Session, master_word_id: int) -> models.MasterWord:
 def read_rnd_master_word(db: Session, exclude_ids: List[int]) -> models.MasterWord:
     """Function should query the db for a random master word not in list of ids"""
     return db.query(models.MasterWord).filter(
-        models.MasterWord.id not in exclude_ids
+        ~models.MasterWord.id.in_(exclude_ids)
         ).order_by(func.random()).first()
 
 
