@@ -25,3 +25,27 @@ Python implementation of the classic scrambled word game
   alembic revision --autogenerate -m "added tables"
   ```
   - double check the created revision under `alembic/versions`
+
+  ## Connecting to CloudSQL
+
+  TO create an instance on to cloud SQL, go to gcp console UI - SQL section, and create a DB with the following properties"
+  - instanceID=$POSTGRES_DATABASE_NAME
+  - root-password=$POSTGRES_PASSWORD
+  - database-version=POSTGRES_14
+  - region=$LOCATION
+  - connections:
+    - Private IP
+    - default network
+    - Allocated IP range: Use automatically assigned IP range
+
+Refering to variables as defined in the .env file.
+
+Get the IP address of newly created instance running
+```
+gcloud sql instances describe $POSTGRES_DATABASE_NAME | grep ipAddress
+```
+
+Finally create a db inside the instance running (we make teh chocie here to name the db same as instance on cloudSQL):
+```
+gcloud sql databases create $POSTGRES_DATABASE_NAME --instance=$POSTGRES_DATABASE_NAME
+```

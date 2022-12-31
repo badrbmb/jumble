@@ -222,11 +222,9 @@ else:
 
         st.warning(game.dialogue.replace('Character', '\n\nCharacter'))
 
-        url = 'https://storage.googleapis.com/jumble-bucket/images/1.png'
-
         _, inner_col1, _ = st.columns([1, 2, 1])
         with inner_col1:
-            st.image(load_image(url), width=300)
+            st.image(load_image(game.image_url), width=300)
 
         st.markdown("____")
 
