@@ -4,13 +4,6 @@ from sqlalchemy.orm import Session
 from jumble import crud, models
 from jumble.database import SessionLocal
 
-# Temp variables until populated for all master words
-IMAGE_URL = 'https://storage.cloud.google.com/jumble-bucket/images/1.png'
-DIALOGUE = """
-Character 1: "Yo, did you see those dinos at the museum yesterday?"
-Character 2: "They were so old, I can't even imagine how long they've been around for."
-"""
-
 
 def create_jumble_options(row_h: pd.Series):
     """Create jumble options from pd.Series"""
@@ -24,8 +17,6 @@ def create_master_word(row: pd.Series, df_hints: pd.DataFrame):
 
     new_master = dict(row)
     new_master.pop('id')
-    # add temp image and dialogue for now
-    new_master.update({'image_url': IMAGE_URL, 'dialogue': DIALOGUE})
     new_master = models.MasterWord(**new_master)
 
     jumbles = []

@@ -1,11 +1,19 @@
-id,to_complete,solution
-1,"The dinosaurs in the Natural History Museum were so old, they ---",petrified
-2,The soldier who survived mustard gas and pepper spray is now a ---,seasoned veteran
-3,The musician was playing his best tracks from the 80s when he fell off the stage. He was a real ---,fallen star
-4,The retired astronaut working at the burger joint is a real ---,space cowpoke
-5,"If you ever see a dentist working in a shoe store, he must be a ---!",sole practitioner
-6,"When reading a book on anti-gravity, it's impossible to ---!",put it down
-7,Don't try starting a company that sells water in the desert. It's a ---,mirage
-8,"He tried to start a hot air balloon company, but it's hard to ---",get off the ground
-9,"He thought of selling yachts, but it's not going to be ---",smooth sailing
-10,"Ever since he started a business that sells pillows,  he've been ---",living the dream
+id,to_complete,solution,dialogue,image_url
+1,"The dinosaurs in the Natural History Museum were so old, they ---",petrified,"Character 1: ""Yo, did you see those dinos at the museum yesterday?""
+Character 2: ""They were so old, I can't even imagine how long they've been around for.""",https://storage.googleapis.com/jumble-bucket/images/1.png
+2,The soldier who survived mustard gas and pepper spray is now a ---,seasoned veteran,"Character 1: ""Hey, did you hear about that new guy in our unit?""
+Character 2: ""You mean the one who survived mustard gas and pepper spray?""
+Character 1: ""Yeah, that's the one. They say he's a real pro now.""",https://storage.googleapis.com/jumble-bucket/images/2.png
+3,The musician was playing his best tracks from the 80s when he fell off the stage. He was a real ---,fallen star,"Character 1: ""Oh man, that's rough. Is he okay?""
+Character 2: ""Ha! Doesn't look like it. But at least he went out with a bang!""",https://storage.googleapis.com/jumble-bucket/images/3.png
+4,The retired astronaut working at the burger joint is a real ---,space cowpoke,"Character 1: ""Holy cow, that looks delicious?!""
+Character 2: ""A single bit would put you on cloud nine for days!""",https://storage.googleapis.com/jumble-bucket/images/4.png
+5,"If you ever see a dentist working in a shoe store, he must be a ---!",sole practitioner,"Character 1: ""With no one to bother me, I might as well open up a shoe store.""",https://storage.googleapis.com/jumble-bucket/images/5.png
+6,"When reading a book on anti-gravity, it's impossible to ---!",put it down,"Character 1: ""I've only started reading the first pages but it feel like an eternety already - this book is warping of the space-time continuum!""",https://storage.googleapis.com/jumble-bucket/images/6.png
+7,Don't try starting a company that sells water in the desert. It's a ---,mirage,"Character 1: ""Uh, have you ever been to the desert before? There's no water there.""
+Character 2: ""Exactly. That's why it would be such a great opportunity. People are always thirsty in the desert.""",https://storage.googleapis.com/jumble-bucket/images/7.png
+8,"He tried to start a hot air balloon company, but it's hard to ---",get off the ground,"Character 1: ""Why is this thing not flying?""
+Character 2: ""Dunno, have you tried the on button ?""",https://storage.googleapis.com/jumble-bucket/images/8.png
+9,"He thought of selling yachts, but it's not going to be ---",smooth sailing,"Character 1: ""Wow, we got some pretty nice waves today!""
+Character 2: ""Nice waves? It's a goddam tempest, we might actually sink!""",https://storage.googleapis.com/jumble-bucket/images/9.png
+10,"Ever since he started a business that sells pillows,  he've been ---",living the dream,"Character 1: ""1 sheep, 2 sheeps, 3 sheeps, ... ZzZzZz""",https://storage.googleapis.com/jumble-bucket/images/10.png
